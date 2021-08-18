@@ -1,13 +1,14 @@
+import { Route, Switch } from "react-router-dom";
 import "./App.css";
-import MovieList from "./components/MovieList";
-import { movieAPI } from "./services/movie-api";
+import DetailsPage from "./pages/DetailsPage";
+import HomePage from "./pages/HomePage";
 
 function App() {
   return (
-    <div className="App">
-      <MovieList categoryToFetch={movieAPI.getCurrentlyPlayingMovies} horizontalView={true} title="Currently Playing" />
-      <MovieList categoryToFetch={movieAPI.getPopularMovies} title="Popular Movies" />
-    </div>
+    <Switch>
+      <Route exact path="/" component={HomePage} />
+      <Route exact path="/:movieID" component={DetailsPage} />
+    </Switch>
   );
 }
 

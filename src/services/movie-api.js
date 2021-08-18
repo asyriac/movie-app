@@ -18,7 +18,27 @@ const getPopularMovies = async () => {
   }
 };
 
+const getMovieDetails = async (movieID) => {
+  try {
+    const response = await axios.get(`${process.env.REACT_APP_API_ENDPOINT}/movie/${movieID}?api_key=${process.env.REACT_APP_API_KEY}`);
+    return response.data;
+  } catch (error) {
+    return error.response;
+  }
+};
+
+const getMovieCast = async (movieID) => {
+  try {
+    const response = await axios.get(`${process.env.REACT_APP_API_ENDPOINT}/movie/${movieID}/credits?api_key=${process.env.REACT_APP_API_KEY}`);
+    return response.data;
+  } catch (error) {
+    return error.response;
+  }
+};
+
 export const movieAPI = {
   getCurrentlyPlayingMovies,
   getPopularMovies,
+  getMovieDetails,
+  getMovieCast,
 };

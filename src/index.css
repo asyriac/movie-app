@@ -1,5 +1,29 @@
-body {
+@import url("https://fonts.googleapis.com/css2?family=Kanit:wght@200&display=swap");
+
+/* Reset */
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
   margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+body {
+  background: black;
+  color: white;
+  font-family: "Kanit", sans-serif;
+}
+
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 1rem 1.5rem;
 }
 
 .horizontal-view-container {
@@ -22,3 +46,56 @@ body {
   max-height: 150px;
 }
 
+/* Details page */
+.movie-detail-img {
+  height: 350px;
+}
+
+.movie-detail-header {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.person-list-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  grid-row-gap: 1rem;
+}
+
+.person-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.person-img {
+  border-radius: 50%;
+  height: 120px;
+  width: 120px;
+}
+
+/* Utilities */
+.mt-1 {
+  margin-top: 0.7rem;
+}
+
+/* Media queries */
+@media screen and (max-width: 767px) {
+  .movie-detail-header {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+  .person-list-container {
+    display: flex;
+    gap: 1rem;
+    overflow-y: hidden;
+    overflow-x: scroll;
+  }
+
+  .person-container {
+  }
+}
