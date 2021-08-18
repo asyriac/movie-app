@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { movieAPI } from "../services/movie-api";
 import MovieCard from "./MovieCard";
 
-const CurrentlyPlaylingList = () => {
+const MovieList = ({ categoryToFetch, horizontalView, title }) => {
   const [loading, setLoading] = useState(true);
   const [movies, setMovies] = useState([]);
 
@@ -10,7 +10,7 @@ const CurrentlyPlaylingList = () => {
 
   useEffect(() => {
     async function fetchData() {
-      const result = await movieAPI.getCurrentlyPlayingMovies();
+      const result = await categoryToFetch();
       setMovies(result);
       setLoading(false);
     }
@@ -21,14 +21,17 @@ const CurrentlyPlaylingList = () => {
       {loading ? (
         <h1>Loading...</h1>
       ) : (
-        <div className="flex currently-playing-container">
-          {movies.map((movie) => {
-            return <MovieCard key={movie.id} movie={movie} />;
-          })}
+        <div>
+          <h1>{title}</h1>
+          <div className={`${horizontalView ? `horizontal-view-container ` : `vertical-view-container  `}`}>
+            {movies.map((movie) => {
+              return <MovieCard key={movie.id} movie={movie} horizontalView={horizontalView} />;
+            })}
+          </div>
         </div>
       )}
     </>
   );
 };
 
-export default CurrentlyPlaylingList;
+export default MovieList;

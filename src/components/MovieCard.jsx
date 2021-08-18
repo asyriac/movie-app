@@ -1,7 +1,9 @@
-const CurrentlyPlayingListItem = ({ movie }) => {
+const MovieCard = ({ movie, horizontalView }) => {
   console.log(movie);
-  return <img className="responsive-img" src={`https://image.tmdb.org/t/p/w500/${movie.backdrop_path}`} />;
+
+  const imageSrc = horizontalView ? `https://image.tmdb.org/t/p/w500/${movie.backdrop_path}` : `https://image.tmdb.org/t/p/w500/${movie.poster_path}`;
+
+  return <img className={`view ${horizontalView && `horizontal-view`}`} src={imageSrc} />;
 };
 
-export default CurrentlyPlayingListItem;
-  
+export default MovieCard;

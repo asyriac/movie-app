@@ -9,6 +9,16 @@ const getCurrentlyPlayingMovies = async () => {
   }
 };
 
+const getPopularMovies = async () => {
+  try {
+    const response = await axios.get(`${process.env.REACT_APP_API_ENDPOINT}/movie/popular/?api_key=${process.env.REACT_APP_API_KEY}`);
+    return response.data.results;
+  } catch (error) {
+    return error.response;
+  }
+};
+
 export const movieAPI = {
   getCurrentlyPlayingMovies,
+  getPopularMovies,
 };
