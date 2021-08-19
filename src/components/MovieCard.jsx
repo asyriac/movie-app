@@ -9,7 +9,11 @@ const MovieCard = ({ movie, horizontalView }) => {
     history.push(`/${movie.id}`);
   };
 
-  return <img className={`view ${horizontalView && `horizontal-view`}`} src={imageSrc} onClick={handleClick} />;
+  return (
+    <div className={`${horizontalView && `horizontal-view`}`}>
+      <img className={`view `} src={imageSrc} onClick={handleClick} />
+    </div>
+  );
 };
 
 export default MovieCard;

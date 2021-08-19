@@ -21,7 +21,7 @@ body {
 }
 
 .container {
-  max-width: 900px;
+  max-width: 1200px;
   margin: 0 auto;
   padding: 1rem 1.5rem;
 }
@@ -34,16 +34,19 @@ body {
 
 .vertical-view-container {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  grid-gap: 0.8rem;
 }
 
 .view {
   width: 100%;
   cursor: pointer;
 }
-
 .horizontal-view {
-  max-height: 150px;
+  /* max-height: 250px; */
+  flex-basis: 250px;
+  flex-grow: 1;
+  flex-shrink: 0;
 }
 
 /* Details page */
@@ -74,6 +77,7 @@ body {
   border-radius: 50%;
   height: 120px;
   width: 120px;
+  background: white;
 }
 
 /* Utilities */
@@ -94,8 +98,5 @@ body {
     gap: 1rem;
     overflow-y: hidden;
     overflow-x: scroll;
-  }
-
-  .person-container {
   }
 }

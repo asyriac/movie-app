@@ -9,9 +9,9 @@ const getCurrentlyPlayingMovies = async () => {
   }
 };
 
-const getPopularMovies = async () => {
+const getPopularMovies = async (pageNo = 1) => {
   try {
-    const response = await axios.get(`${process.env.REACT_APP_API_ENDPOINT}/movie/popular/?api_key=${process.env.REACT_APP_API_KEY}`);
+    const response = await axios.get(`${process.env.REACT_APP_API_ENDPOINT}/movie/popular/?api_key=${process.env.REACT_APP_API_KEY}&page=${pageNo}`);
     return response.data.results;
   } catch (error) {
     return error.response;

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { movieAPI } from "../services/movie-api";
-import Person from "./Person";
+import Image from "./Image";
 
 const MovieDetails = () => {
   const { movieID } = useParams();
@@ -25,7 +25,7 @@ const MovieDetails = () => {
       {loading ? (
         <h1>Loading...</h1>
       ) : (
-        <div className="container">
+        <div>
           <div className="movie-detail-header">
             <img className="movie-detail-img" src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`} />
             <div>
@@ -41,10 +41,26 @@ const MovieDetails = () => {
             <p>{movie.overview}</p>
           </div>
           <div className="mt-1">
-            <h1>Cast</h1>
+            <h2>Cast</h2>
             <div className="person-list-container">
-              {movie.cast.map((item) => (
-                <Person details={item} />
+              {movie.cast.map(({ name, character, profile_path }) => (
+                <Image name={name} character={character} img_path={profile_path} />
+              ))}
+            </div>
+          </div>
+          <div className="mt-1">
+            <h2>Crew</h2>
+            <div className="person-list-container">
+              {movie.crew.map(({ name, job, profile_path }) => (
+                <Image name={name} job={job} img_path={profile_path} />
+              ))}
+            </div>
+          </div>
+          <div className="mt-1">
+            <h2>Production Companies</h2>
+            <div className="person-list-container">
+              {movie.production_companies.map(({ name, job, logo_path }) => (
+                <Image name={name} job={job} img_path={logo_path} />
               ))}
             </div>
           </div>

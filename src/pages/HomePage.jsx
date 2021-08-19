@@ -1,11 +1,12 @@
-import MovieList from "../components/MovieList";
+import CurrentlyPlayingList from "../components/CurrentlyPlayingList";
+import PopularMovieList from "../components/PopularMovieList";
 import { movieAPI } from "../services/movie-api";
 
 const HomePage = () => {
   return (
     <>
-      <MovieList categoryToFetch={movieAPI.getCurrentlyPlayingMovies} horizontalView={true} title="Currently Playing" />
-      <MovieList categoryToFetch={movieAPI.getPopularMovies} title="Popular Movies" />
+      <CurrentlyPlayingList />
+      <PopularMovieList />
     </>
   );
 };
