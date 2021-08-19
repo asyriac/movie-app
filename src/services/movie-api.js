@@ -2,7 +2,7 @@ import axios from "axios";
 
 const getCurrentlyPlayingMovies = async (pageNo = 1) => {
   try {
-    const response = await axios.get(`${process.env.REACT_APP_API_ENDPOINT}/movie/now_playing/?api_key=${process.env.REACT_APP_API_KEY}&page=${pageNo}`);
+    const response = await axios.get(`${process.env.REACT_APP_API_ENDPOINT}/movie/now_playing?api_key=${process.env.REACT_APP_API_KEY}&page=${pageNo}`);
     return response.data.results;
   } catch (error) {
     return error.response;
@@ -11,7 +11,7 @@ const getCurrentlyPlayingMovies = async (pageNo = 1) => {
 
 const getPopularMovies = async (pageNo = 1) => {
   try {
-    const response = await axios.get(`${process.env.REACT_APP_API_ENDPOINT}/movie/popular/?api_key=${process.env.REACT_APP_API_KEY}&page=${pageNo}`);
+    const response = await axios.get(`${process.env.REACT_APP_API_ENDPOINT}/movie/popular?api_key=${process.env.REACT_APP_API_KEY}&page=${pageNo}`);
     return response.data.results;
   } catch (error) {
     return error.response;
