@@ -1,8 +1,8 @@
 import axios from "axios";
 
-const getCurrentlyPlayingMovies = async () => {
+const getCurrentlyPlayingMovies = async (pageNo = 1) => {
   try {
-    const response = await axios.get(`${process.env.REACT_APP_API_ENDPOINT}/movie/now_playing/?api_key=${process.env.REACT_APP_API_KEY}`);
+    const response = await axios.get(`${process.env.REACT_APP_API_ENDPOINT}/movie/now_playing/?api_key=${process.env.REACT_APP_API_KEY}&page=${pageNo}`);
     return response.data.results;
   } catch (error) {
     return error.response;

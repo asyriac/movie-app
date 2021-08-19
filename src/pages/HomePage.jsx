@@ -1,6 +1,5 @@
-import CurrentlyPlayingList from "../components/CurrentlyPlayingList";
 import Navbar from "../components/Navbar";
-import PopularMovieList from "../components/PopularMovieList";
+import MovieList from "../components/MovieList";
 import { movieAPI } from "../services/movie-api";
 
 const HomePage = () => {
@@ -8,8 +7,8 @@ const HomePage = () => {
     <>
       <Navbar />
       <div className="container">
-        <CurrentlyPlayingList />
-        <PopularMovieList />
+        <MovieList title="Currently Playing" apiCall={movieAPI.getCurrentlyPlayingMovies} horizontalView={true} />
+        <MovieList title="Popular Movies" apiCall={movieAPI.getPopularMovies} horizontalView={false} />
       </div>
     </>
   );

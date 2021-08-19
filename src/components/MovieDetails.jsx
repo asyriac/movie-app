@@ -17,9 +17,8 @@ const MovieDetails = () => {
       setLoading(false);
     }
     fetchData();
-  }, []);
+  }, [movieID]);
 
-  console.log(movie);
   return (
     <>
       {loading ? (
@@ -27,7 +26,7 @@ const MovieDetails = () => {
       ) : (
         <div>
           <div className="movie-detail-header">
-            <img className="movie-detail-img" src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`} />
+            <img className="movie-detail-img" src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`} alt={`${movie.original_title}-poster`} />
             <div>
               <h1>{movie.original_title}</h1>
               <h3>Rating: {movie.vote_average} / 10</h3>
@@ -43,25 +42,28 @@ const MovieDetails = () => {
           <div className="mt-1">
             <h2>Cast</h2>
             <div className="person-list-container">
-              {movie.cast.map(({ name, character, profile_path }) => (
-                <Image name={name} character={character} img_path={profile_path} />
+              {movie.cast.map(({ cast_id, name, character, profile_path }) => (
+                <Image key={cast_id} name={name} character={character} img_path={profile_path} />
               ))}
+              {movie.cast.length === 0 && <h3>Not Available</h3>}
             </div>
           </div>
           <div className="mt-1">
             <h2>Crew</h2>
             <div className="person-list-container">
-              {movie.crew.map(({ name, job, profile_path }) => (
-                <Image name={name} job={job} img_path={profile_path} />
+              {movie.crew.map(({ credit_id, name, job, profile_path }) => (
+                <Image key={credit_id} name={name} job={job} img_path={profile_path} />
               ))}
+              {movie.crew.length === 0 && <h3>Not Available</h3>}
             </div>
           </div>
           <div className="mt-1">
             <h2>Production Companies</h2>
             <div className="person-list-container">
-              {movie.production_companies.map(({ name, job, logo_path }) => (
-                <Image name={name} job={job} img_path={logo_path} />
+              {movie.production_companies.map(({ id, name, job, logo_path }) => (
+                <Image key={id} name={name} job={job} img_path={logo_path} />
               ))}
+              {movie.production_companies.length === 0 && <h3>Not Available</h3>}
             </div>
           </div>
         </div>

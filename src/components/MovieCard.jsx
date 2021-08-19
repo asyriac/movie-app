@@ -1,17 +1,18 @@
 import { useHistory } from "react-router-dom";
 
-const MovieCard = ({ movie, horizontalView }) => {
+const MovieCard = ({ movie, horizontalView, innerRef, lastItem }) => {
   const history = useHistory();
 
   const imageSrc = horizontalView ? `https://image.tmdb.org/t/p/w500/${movie.backdrop_path}` : `https://image.tmdb.org/t/p/w500/${movie.poster_path}`;
+
   const languageNames = new Intl.DisplayNames(["en"], { type: "language" });
   const handleClick = () => {
     history.push(`/${movie.id}`);
   };
 
   return (
-    <div className={`card ${horizontalView ? `horizontal-view` : `vertical-view`}`} onClick={handleClick}>
-      <img className={`view `} src={imageSrc} />
+    <div ref={lastItem && innerRef} className={`card ${horizontalView ? `horizontal-view` : `vertical-view`}`} onClick={handleClick}>
+      <img className={`view `} src={imageSrc !== null ? imageSrc : movie.poster_path} alt={`${movie.original_title}-poster`} />
       {!horizontalView && (
         <div className="movie-card-body-container">
           <h1>{movie.original_title}</h1>
