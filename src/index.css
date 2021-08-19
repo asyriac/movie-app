@@ -23,9 +23,26 @@ body {
 .container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 1rem 1.5rem;
+  padding: 0 1.5rem 0.8rem 1.5rem;
 }
 
+.navbar-container {
+  margin-bottom: 1rem;
+  padding: 0 1.5rem;
+  border-bottom: 2px solid #373d6c;
+}
+
+.navbar {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.card * {
+  cursor: pointer;
+}
 .horizontal-view-container {
   display: flex;
   overflow-x: scroll;
@@ -40,13 +57,25 @@ body {
 
 .view {
   width: 100%;
-  cursor: pointer;
 }
 .horizontal-view {
   /* max-height: 250px; */
-  flex-basis: 250px;
-  flex-grow: 1;
+  flex-basis: 300px;
+  /* flex-grow: 1; */
   flex-shrink: 0;
+  position: relative;
+}
+
+.card-overlay-text {
+  text-shadow: 0 0 5px #000;
+}
+
+.vertical-view {
+  background: #373d6c;
+}
+
+.movie-card-body-container {
+  padding: 0.5rem 1rem;
 }
 
 /* Details page */
@@ -83,6 +112,10 @@ body {
 /* Utilities */
 .mt-1 {
   margin-top: 0.7rem;
+}
+
+.icon {
+  cursor: pointer;
 }
 
 /* Media queries */

@@ -4,12 +4,10 @@ import HomePage from "./pages/HomePage";
 
 function App() {
   return (
-    <div className="container">
-      <Switch>
-        <Route exact path="/" component={HomePage} />
-        <Route exact path="/:movieID" component={DetailsPage} />
-      </Switch>
-    </div>
+    <Switch>
+      <Route exact path="/" component={HomePage} />
+      <Route exact path="/:movieID" component={DetailsPage} />
+    </Switch>
   );
 }
 
