@@ -12,7 +12,7 @@ const MovieCard = ({ movie, horizontalView, innerRef, lastItem }) => {
 
   return (
     <div ref={lastItem && innerRef} className={`card ${horizontalView ? `horizontal-view` : `vertical-view`}`} onClick={handleClick}>
-      <img className={`view `} src={imageSrc !== null ? imageSrc : movie.poster_path} alt={`${movie.original_title}-poster`} />
+      <img className={`card-img `} src={imageSrc !== null ? imageSrc : movie.poster_path} alt={`${movie.original_title}-poster`} />
       {!horizontalView && (
         <div className="movie-card-body-container">
           <h1>{movie.original_title}</h1>
@@ -23,12 +23,8 @@ const MovieCard = ({ movie, horizontalView, innerRef, lastItem }) => {
       )}
       {horizontalView && (
         <>
-          <h3 style={{ position: "absolute", bottom: "8px", left: "10px" }} className="card-overlay-text">
-            {movie.original_title}
-          </h3>
-          <h3 style={{ position: "absolute", top: "8px", left: "10px" }} className="card-overlay-text">
-            {movie.vote_average} / 10
-          </h3>
+          <h3 className="card-overlay-text card-overlay-text-top">{movie.original_title}</h3>
+          <h3 className="card-overlay-text card-overlay-text-bottom">{movie.vote_average} / 10</h3>
         </>
       )}
     </div>

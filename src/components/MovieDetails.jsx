@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { movieAPI } from "../services/movie-api";
-import Image from "./Image";
+import Info from "./Info";
 
 const MovieDetails = () => {
   const { movieID } = useParams();
@@ -11,8 +11,11 @@ const MovieDetails = () => {
 
   useEffect(() => {
     async function fetchData() {
-      const movieDetails = await movieAPI.getMovieDetails(movieID);
-      const movieCast = await movieAPI.getMovieCast(movieID);
+      const data = await Promise.all([movieAPI.getMovieDetails(movieID), movieAPI.getMovieCast(movieID)]);
+
+      const movieDetails = data[0];
+      const movieCast = data[1];
+
       setMovie({ ...movieDetails, ...movieCast });
       setLoading(false);
     }
@@ -41,27 +44,27 @@ const MovieDetails = () => {
           </div>
           <div className="mt-1">
             <h2>Cast</h2>
-            <div className="person-list-container">
+            <div className="info-list-container">
               {movie.cast.map(({ cast_id, name, character, profile_path }) => (
-                <Image key={cast_id} name={name} character={character} img_path={profile_path} />
+                <Info key={cast_id} name={name} character={character} img_path={profile_path} />
               ))}
               {movie.cast.length === 0 && <h3>Not Available</h3>}
             </div>
           </div>
           <div className="mt-1">
             <h2>Crew</h2>
-            <div className="person-list-container">
+            <div className="info-list-container">
               {movie.crew.map(({ credit_id, name, job, profile_path }) => (
-                <Image key={credit_id} name={name} job={job} img_path={profile_path} />
+                <Info key={credit_id} name={name} job={job} img_path={profile_path} />
               ))}
               {movie.crew.length === 0 && <h3>Not Available</h3>}
             </div>
           </div>
           <div className="mt-1">
             <h2>Production Companies</h2>
-            <div className="person-list-container">
+            <div className="info-list-container">
               {movie.production_companies.map(({ id, name, job, logo_path }) => (
-                <Image key={id} name={name} job={job} img_path={logo_path} />
+                <Info key={id} name={name} job={job} img_path={logo_path} />
               ))}
               {movie.production_companies.length === 0 && <h3>Not Available</h3>}
             </div>
